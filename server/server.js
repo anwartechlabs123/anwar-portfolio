@@ -192,7 +192,7 @@ const DB = {
         id: "ev-photo-1",
         title: "Speech & Keynote at Saylani AI Hackathon Event",
         category: "Event Leadership",
-        image: "./saylani/i-am-gving-speech-for-ai%20hackathon%20event.jpg",
+        image: "./saylani/saylani-ai-hackathon-speech.jpg",
         caption: "Delivering opening speech, orienting student developer teams, and outlining competition criteria at the Saylani AI Hackathon.",
         tags: ["Keynote Speech", "AI Hackathon", "Team Leadership"]
       },
@@ -200,7 +200,7 @@ const DB = {
         id: "ev-photo-2",
         title: "On-Ground Technical Operations & Supervision",
         category: "Infrastructure Supervision",
-        image: "./saylani/hackhaton%20click.jpg",
+        image: "./saylani/saylani-hackathon-operations.jpg",
         caption: "Supervising workstation setups, network stability, and operational logistics during live hackathon competition rounds at Saylani.",
         tags: ["Live Supervision", "Network Setup", "Operations Management"]
       }
