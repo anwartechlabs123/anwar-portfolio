@@ -145,20 +145,29 @@ function initHeadlineRotator() {
 // 3. DATA LAYER & API INTEGRATION
 // ========================================================
 async function fetchPortfolioData() {
+  // If hosted on GitHub Pages or static host without backend
+  if (window.location.protocol === 'file:' || window.location.hostname.includes('github.io')) {
+    renderDynamicSections();
+    return;
+  }
+
   try {
     const [profileRes, expRes, projRes, saylaniRes, certRes] = await Promise.all([
-      fetch('/api/profile'),
-      fetch('/api/expertise'),
-      fetch('/api/projects'),
-      fetch('/api/saylani'),
-      fetch('/api/certifications')
+      fetch('/api/profile').catch(() => null),
+      fetch('/api/expertise').catch(() => null),
+      fetch('/api/projects').catch(() => null),
+      fetch('/api/saylani').catch(() => null),
+      fetch('/api/certifications').catch(() => null)
     ]);
 
-    APP.profile = await profileRes.json();
-    APP.expertise = await expRes.json();
-    APP.projects = await projRes.json();
-    APP.saylani = await saylaniRes.json();
-    APP.certifications = await certRes.json();
+    if (profileRes && profileRes.ok) APP.profile = await profileRes.json();
+    if (expRes && expRes.ok) APP.expertise = await expRes.json();
+    if (projRes && projRes.ok) {
+      const data = await projRes.json();
+      if (Array.isArray(data) && data.length > 0) APP.projects = data;
+    }
+    if (saylaniRes && saylaniRes.ok) APP.saylani = await saylaniRes.json();
+    if (certRes && certRes.ok) APP.certifications = await certRes.json();
 
   } catch (err) {
     console.warn("Using inline fallback data:", err);
@@ -200,15 +209,17 @@ function renderProjects() {
     filtered = filtered.filter(p => p.category === APP.activeProjectCategory);
   }
 
-  container.innerHTML = filtered.map(proj => `
+  container.innerHTML = filtered.map(proj => {
+    const imgSrc = proj.image.startsWith('/') ? '.' + proj.image : proj.image;
+    return `
     <article class="project-card group">
       <div class="project-card-image">
         <img 
-          src="${proj.image}" 
+          src="${imgSrc}" 
           alt="${proj.title}" 
           loading="lazy" 
           class="w-full h-full object-cover"
-          onerror="this.src='/portrait.png'"
+          onerror="this.src='./portrait.png'"
         >
         <div class="absolute inset-0 bg-gradient-to-t from-[#0B1020] via-transparent to-transparent opacity-80"></div>
         <div class="absolute top-4 left-4">
@@ -252,7 +263,8 @@ function renderProjects() {
         </div>
       </div>
     </article>
-  `).join('');
+  `;
+  }).join('');
 
   if (typeof lucide !== 'undefined') lucide.createIcons();
 }
