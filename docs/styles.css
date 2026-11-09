@@ -1,0 +1,474 @@
+/* ========================================================
+   ANWAR UDDIN — PREMIUM PERSONAL PORTFOLIO
+   Master Stylesheet & Luxury Dark Design System
+   ======================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-primary: #0B1020;         /* Midnight Navy */
+  --bg-secondary: #080A10;       /* Deep Black */
+  --bg-surface: #10162B;         /* Surface Navy */
+  --bg-surface-elevated: #161D36;
+
+  --text-primary: #F5F0E8;       /* Soft Ivory */
+  --text-secondary: #A8B0C0;     /* Muted Slate */
+  --text-tertiary: #687287;      /* Neutral Muted */
+
+  --accent-gold: #D6B77A;        /* Champagne Gold */
+  --accent-gold-hover: #E4C890;
+  --accent-gold-soft: rgba(214, 183, 122, 0.12);
+  --accent-gold-border: rgba(214, 183, 122, 0.28);
+
+  --accent-blue: #648CFF;        /* Electric Blue */
+  --accent-blue-soft: rgba(100, 140, 255, 0.12);
+
+  --accent-purple: #9A8AEF;      /* Muted Lavender */
+
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-refined: rgba(214, 183, 122, 0.22);
+
+  /* Typography */
+  --font-display: 'Sora', 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-editorial: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Top Scroll Progress Bar */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #D6B77A, #E4C890, #648CFF);
+  z-index: 100;
+  box-shadow: 0 0 10px rgba(214, 183, 122, 0.6);
+  transition: width 0.1s ease-out;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: var(--accent-gold);
+  color: var(--bg-primary);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(214, 183, 122, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
+
+/* Brand Typographic Wordmark */
+.brand-wordmark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: opacity 0.3s ease;
+  text-decoration: none;
+}
+
+.brand-wordmark:hover {
+  opacity: 0.9;
+}
+
+.brand-monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--accent-gold-border);
+  color: var(--accent-gold);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 8px;
+  background: rgba(214, 183, 122, 0.05);
+}
+
+/* Champagne Accents & Gradients */
+.text-champagne {
+  color: var(--accent-gold);
+}
+
+.text-champagne-gradient {
+  background: linear-gradient(135deg, #F5F0E8 0%, #D6B77A 50%, #E8D3A8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hairline-gold {
+  width: 44px;
+  height: 1.5px;
+  background-color: var(--accent-gold);
+  display: inline-block;
+}
+
+/* Navigation Links */
+.nav-link {
+  position: relative;
+  font-family: var(--font-editorial);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: 0.35rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--accent-gold);
+  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Premium Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.9rem 2rem;
+  border-radius: 9999px;
+  background-color: var(--accent-gold);
+  color: var(--bg-secondary);
+  font-family: var(--font-editorial);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: 1px solid var(--accent-gold);
+  box-shadow: 0 4px 20px -4px rgba(214, 183, 122, 0.25);
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-gold-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px -4px rgba(214, 183, 122, 0.45);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.9rem 2rem;
+  border-radius: 9999px;
+  background-color: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-editorial);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border: 1px solid var(--border-hairline);
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  background-color: rgba(214, 183, 122, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Hero Centerpiece Card */
+.hero-centerpiece-card {
+  position: relative;
+  border-radius: 28px;
+  overflow: visible;
+  background: linear-gradient(145deg, rgba(16, 22, 43, 0.9), rgba(8, 10, 16, 0.95));
+  border: 1px solid var(--border-refined);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 0 0 50px -10px rgba(100, 140, 255, 0.15);
+}
+
+.hero-glow-backdrop {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle at 50% 50%, rgba(214, 183, 122, 0.15), rgba(100, 140, 255, 0.12), transparent 70%);
+  z-index: -1;
+  filter: blur(35px);
+  pointer-events: none;
+}
+
+/* Dynamic Headline Flip */
+.headline-ticker {
+  display: inline-block;
+  min-height: 1.25em;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* Expertise Rows (Guaranteed Visibility & Luxury Polish) */
+.expertise-row {
+  border-bottom: 1px solid var(--border-hairline);
+  padding: 2.2rem 1.5rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  background-color: transparent;
+  border-radius: 14px;
+}
+
+.expertise-row:hover {
+  background-color: rgba(214, 183, 122, 0.03);
+  border-color: var(--accent-gold-border);
+  transform: translateX(6px);
+}
+
+.expertise-row:hover .expertise-num {
+  color: var(--accent-gold);
+}
+
+.expertise-row:hover .expertise-icon {
+  background-color: rgba(214, 183, 122, 0.15);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  transform: scale(1.08);
+}
+
+.expertise-row:hover .expertise-arrow {
+  transform: translateX(4px) rotate(-45deg);
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+/* Project Cards */
+.project-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-card:hover {
+  border-color: var(--accent-gold-border);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -12px rgba(8, 10, 16, 0.8), 0 0 30px -10px rgba(214, 183, 122, 0.15);
+}
+
+.project-card-image {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+}
+
+.project-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-card-image img {
+  transform: scale(1.06);
+}
+
+/* ========================================================
+   SAYLANI EVENT GALLERY — PREMIUM EDITORIAL CARDS
+   Smooth 3D Hover Depth, Glass Shimmer & Golden Glow
+   ======================================================== */
+.event-photo-card {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(16, 22, 43, 0.9), rgba(8, 10, 16, 0.95));
+  border: 1px solid var(--border-refined);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6);
+}
+
+.event-photo-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 29px;
+  background: radial-gradient(circle at 50% 0%, rgba(214, 183, 122, 0.4), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.event-photo-card:hover {
+  border-color: rgba(214, 183, 122, 0.65);
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.9), 0 0 35px -5px rgba(214, 183, 122, 0.25);
+}
+
+.event-photo-card:hover::before {
+  opacity: 1;
+}
+
+.event-photo-image-wrap {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+  border-radius: 20px;
+}
+
+.event-photo-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+}
+
+.event-photo-card:hover .event-photo-image-wrap img {
+  transform: scale(1.06);
+  filter: contrast(1.08) brightness(1.02);
+}
+
+/* Glass Light Sheen Sweep on Hover */
+.event-photo-image-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.9s ease;
+  pointer-events: none;
+}
+
+.event-photo-card:hover .event-photo-image-wrap::after {
+  left: 150%;
+}
+
+/* Toast Notification (Discreet Luxury Pill) */
+#toast-notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.4rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--accent-gold-border);
+  color: var(--text-primary);
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+#toast-notification.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll Down Pulse Animation */
+@keyframes scrollPulse {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.scroll-indicator-line {
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+
+/* Social Media Button Hover */
+.social-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icon-btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  background-color: rgba(214, 183, 122, 0.08);
+  transform: translateY(-3px);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
