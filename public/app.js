@@ -3,11 +3,82 @@
    Smooth Interactions, Scroll Progress, Event Gallery & Media
    ======================================================== */
 
-// Global App State
+// Global App State with Full Standalone & Live Fallback Data
 const APP = {
-  profile: null,
+  profile: {
+    name: "ANWAR UDDIN",
+    role: "Full Stack Developer | IT Supervisor | Creative Technology Professional",
+    github: "https://github.com/anwartechlabs123"
+  },
   expertise: [],
-  projects: [],
+  projects: [
+    {
+      id: "prj-1",
+      title: "Full Stack Web Application & Portal",
+      category: "Full Stack Web Development",
+      subtitle: "Responsive Architecture & Dynamic State",
+      description: "A comprehensive full-stack web application featuring modern responsive component architecture, secure API integration, dynamic data handling, and clean database connectivity.",
+      techStack: ["React", "Node.js", "Express", "TypeScript", "Tailwind CSS"],
+      image: "./projects/web-development-showcase.jpg",
+      demoUrl: "#",
+      githubUrl: "https://github.com/anwartechlabs123"
+    },
+    {
+      id: "prj-2",
+      title: "Agentic AI Workflow & Intelligent Automation",
+      category: "AI & Agentic AI Solutions",
+      subtitle: "Autonomous Tool Calling & Multi-Agent Loops",
+      description: "Intelligent agentic workflow designed to automate complex multi-step tasks using modern LLM APIs, autonomous reasoning chains, and structured tool sandboxes.",
+      techStack: ["Agentic AI", "Python", "Node.js", "API Integrations", "Automation"],
+      image: "./projects/agentic-ai-showcase.jpg",
+      demoUrl: "#",
+      githubUrl: "https://github.com/anwartechlabs123"
+    },
+    {
+      id: "prj-3",
+      title: "Graphic Design Systems & Digital Visuals",
+      category: "Graphic Design",
+      subtitle: "Brand Identity, Typography & UI Assets",
+      description: "Creative visual design showcase encompassing bespoke brand identities, social media assets, marketing banners, and vector design craftsmanship.",
+      techStack: ["Figma", "Adobe Photoshop", "Adobe Illustrator", "Brand Design"],
+      image: "./projects/graphic-design-showcase.jpg",
+      demoUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      id: "prj-4",
+      title: "Commercial Video Editing & Motion Showcase",
+      category: "Video Editing",
+      subtitle: "High-Retention Cuts & Visual Storytelling",
+      description: "Professional video editing and motion graphics reel incorporating pacing, cinematic audio design, color correction, and social media video formats.",
+      techStack: ["Premiere Pro", "After Effects", "Motion Graphics", "Sound Design"],
+      image: "./projects/video-editing-showcase.jpg",
+      demoUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      id: "prj-5",
+      title: "Digital Marketing & Meta Ads Strategy",
+      category: "Digital Marketing",
+      subtitle: "Campaign Optimization & Target Audiences",
+      description: "Strategic digital marketing campaigns focused on paid advertising, high-converting creative copies, funnel optimization, and audience targeting.",
+      techStack: ["Meta Ads", "Google Analytics", "Campaign Strategy", "Social Media"],
+      image: "./projects/digital-marketing-showcase.jpg",
+      demoUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      id: "prj-6",
+      title: "Technical SEO & Search Visibility",
+      category: "SEO Projects",
+      subtitle: "On-Page Optimization & Core Web Vitals",
+      description: "Comprehensive SEO implementation focusing on semantic markup, Core Web Vitals performance, site speed, and structured content indexing.",
+      techStack: ["Technical SEO", "Schema Markup", "Performance Tuning", "Search Console"],
+      image: "./projects/seo-optimization-showcase.jpg",
+      demoUrl: "#",
+      githubUrl: "#"
+    }
+  ],
   saylani: null,
   certifications: [],
   activeProjectCategory: 'All'
@@ -89,9 +160,10 @@ async function fetchPortfolioData() {
     APP.saylani = await saylaniRes.json();
     APP.certifications = await certRes.json();
 
-    renderDynamicSections();
   } catch (err) {
     console.warn("Using inline fallback data:", err);
+  } finally {
+    renderDynamicSections();
   }
 }
 
